@@ -12,6 +12,7 @@ export default function Home() {
     const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
+        fetchCryptoData();
         const interval = setInterval(fetchCryptoData, 30000)
 
         return () => clearInterval(interval);
@@ -26,7 +27,7 @@ export default function Home() {
             const data = await fetchCryptos();
             setCryptoList(data);
 
-        } catch (error) {
+        } catch (err) {
             console.error("Error fetching crypto:", err);
         } finally {
             setIsLoading(false);
